@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 24-06</title>
+</head>
+
+<body>
+    <label> Informe a cor: </label> <input type="text" id="cor" placeholder="Ex: azul, vermelho, preto"> <br> <br>
+    <label> Informe a ponta: </label> <input type="text" id="ponta" placeholder="Ex: 0.5 | 0.7 | 1.0 "> <br> <br>
+    <label> Informe a marca: </label> <input type="text" id="marca" placeholder="Ex: BIC, Faber-Castell, PopperMate"> <br> <br>
+    <input type="button" value="Enviar" onclick="mostra()">
+    <p id="qq"></p>
+    <script>
+        function mostra() {
+            var caneta = new Object();
+            caneta.cor = document.getElementById("cor").value;
+            caneta.ponta = parseFloat(document.getElementById("ponta").value);
+            caneta.marca = document.getElementById("marca").value;
+
+            caneta.mostrarInfo = function() {
+                document.getElementById("qq").innerHTML = "A cor da caneta é: " + this.cor + ", sua ponta é " + this.ponta + " e sua marca é " + this.marca
+            }
+
+            caneta.mostrarInfo();
+        }
+    </script>
+</body>
+
+</html>

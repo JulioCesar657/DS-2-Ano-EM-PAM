@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício Formulário</title>
+
+    <script>
+        function chamaAq() {
+            var funci = new Object();
+            funci.nome = document.getElementById('nome').value;
+            cpfzada = document.getElementById('cpf');
+            datnasc = document.getElementById('dataNasc');
+
+            // Máscara da data
+            if (datnasc.value.length == 2 || datnasc.value.length == 5) {
+                datnasc.value += "/";
+            }
+
+            funci.dat = datnasc.value;
+
+            funci.mostrar = function() {
+                document.getElementById('iHelp').innerHTML = this.dat;
+            }
+            funci.mostrar();
+        }
+    </script>
+</head>
+
+<body>
+    <h1> Bem-vindo ao Cadastro de funcionários! </h1>
+    <form>
+        <label>Informe o nome do funcionário: </label>
+        <input type="text" id="nome"><br><br>
+        <label>Digite o CPF: </label>
+        <input type="text" id="cpf"><br><br>
+        <label>Informe a Data de Nascimento: </label>
+        <input type="text" id="dataNasc" onkeyup="chamaAq()"><br><br>
+        <input type="button" id="sla" value="Enviar" onclick="chamaAq()">
+    </form>
+    <div id="iHelp">
+
+    </div>
+</body>
+
+</html>
