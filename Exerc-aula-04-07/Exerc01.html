@@ -12,6 +12,7 @@
             funci.nome = document.getElementById('nome').value;
             cpfzada = document.getElementById('cpf');
             datnasc = document.getElementById('dataNasc');
+
             // Máscara do CPF
             if (cpfzada.value.length == 11) {
                 cpfzada.value += "-";
@@ -23,11 +24,18 @@
                 datnasc.value += "/";
             }
 
+            //Pegando a data do sistema
+            var dt = new Date();
+            var dia = dt.getDay();
+            var mes = dt.getMonth();
+            var ano = dt.getFullYear();
+
+            mesesYear = new Array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
+            alert(dia + " de " + mes + "de " + ano)
             funci.cpf = cpfzada.value;
             funci.dat = datnasc.value;
-
             funci.mostrar = function() {
-                document.getElementById('iHelp').innerHTML = this.cpf;
+                document.getElementById('iHelp').innerHTML = this.datanow;
             }
             funci.mostrar();
         }
