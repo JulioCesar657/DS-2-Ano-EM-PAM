@@ -12,16 +12,22 @@
             funci.nome = document.getElementById('nome').value;
             cpfzada = document.getElementById('cpf');
             datnasc = document.getElementById('dataNasc');
-
+            // Máscara do CPF
+            if (cpfzada.value.length == 11) {
+                cpfzada.value += "-";
+            } else if (cpfzada.value.length == 3 || cpfzada.value.length == 7) {
+                cpfzada.value += ".";
+            }
             // Máscara da data
             if (datnasc.value.length == 2 || datnasc.value.length == 5) {
                 datnasc.value += "/";
             }
 
+            funci.cpf = cpfzada.value;
             funci.dat = datnasc.value;
 
             funci.mostrar = function() {
-                document.getElementById('iHelp').innerHTML = this.dat;
+                document.getElementById('iHelp').innerHTML = this.cpf;
             }
             funci.mostrar();
         }
@@ -34,9 +40,9 @@
         <label>Informe o nome do funcionário: </label>
         <input type="text" id="nome"><br><br>
         <label>Digite o CPF: </label>
-        <input type="text" id="cpf"><br><br>
+        <input type="text" id="cpf" maxlength="14" onkeyup="chamaAq()"><br><br>
         <label>Informe a Data de Nascimento: </label>
-        <input type="text" id="dataNasc" onkeyup="chamaAq()"><br><br>
+        <input type="text" id="dataNasc" maxlength="10" onkeyup="chamaAq()"><br><br>
         <input type="button" id="sla" value="Enviar" onclick="chamaAq()">
     </form>
     <div id="iHelp">
