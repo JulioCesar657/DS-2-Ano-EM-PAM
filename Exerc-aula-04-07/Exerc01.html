@@ -7,11 +7,9 @@
     <title>Exercício Formulário</title>
 
     <script>
-        function chamaAq() {
-            var funci = new Object();
-            funci.nome = document.getElementById('nome').value;
-            cpfzada = document.getElementById('cpf');
-            datnasc = document.getElementById('dataNasc');
+        // Esta primeira função atribui as máscaras em seus devidos campos.
+        function masks() {
+            var cpfzada = document.getElementById('cpf');
 
             // Máscara do CPF
             if (cpfzada.value.length == 11) {
@@ -19,23 +17,37 @@
             } else if (cpfzada.value.length == 3 || cpfzada.value.length == 7) {
                 cpfzada.value += ".";
             }
+
+            var datnasc = document.getElementById('dataNasc');
+
             // Máscara da data
             if (datnasc.value.length == 2 || datnasc.value.length == 5) {
                 datnasc.value += "/";
             }
+        }
 
+        function chamaAq() {
+            var funci = new Object();
+            /* Pega os valores de seus devidos campos */
+            funci.nome = document.getElementById('nome').value;
+            funci.cpf = document.getElementById('cpf').value;
+            funci.dat = document.getElementById('dataNasc').value;
+            funci.carg = document.getElementById('cargo').value;
             //Pegando a data do sistema
             var dt = new Date();
-            var dia = dt.getDay();
+            //Pegando apenas o dia
+            var dia = dt.getDate();
+            //Pegando apenas o mês
             var mes = dt.getMonth();
+            //Pegando apenas o ano
             var ano = dt.getFullYear();
 
+
+            //Vetor para atribuir indice do mês a um mês por extenso
             mesesYear = new Array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
-            alert(dia + " de " + mes + "de " + ano)
-            funci.cpf = cpfzada.value;
-            funci.dat = datnasc.value;
+
             funci.mostrar = function() {
-                document.getElementById('iHelp').innerHTML = this.datanow;
+                document.getElementById('iHelp').innerHTML = "O nome do funcionário é " + this.nome + " <br> CPF: " + this.cpf + " <br> Data de nascimento: " + this.dat + " <br> Atua no cargo: " + this.carg + "<br> Cadastro feito no dia: " + dia + " de " + mesesYear[mes] + " de " + ano;
             }
             funci.mostrar();
         }
@@ -48,9 +60,11 @@
         <label>Informe o nome do funcionário: </label>
         <input type="text" id="nome"><br><br>
         <label>Digite o CPF: </label>
-        <input type="text" id="cpf" maxlength="14" onkeyup="chamaAq()"><br><br>
+        <input type="text" id="cpf" maxlength="14" onkeyup="masks()"><br><br>
         <label>Informe a Data de Nascimento: </label>
-        <input type="text" id="dataNasc" maxlength="10" onkeyup="chamaAq()"><br><br>
+        <input type="text" id="dataNasc" maxlength="10" onkeyup="masks()"><br><br>
+        <label>Informe o cargo deste funcionário: </label>
+        <input type="text" id="cargo"><br><br>
         <input type="button" id="sla" value="Enviar" onclick="chamaAq()">
     </form>
     <div id="iHelp">
